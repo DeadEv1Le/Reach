@@ -64,7 +64,7 @@
             android:layout_marginStart="20dp"
             android:drawableLeft="@drawable/baseline_pin_drop_24"
             android:maxLines="1"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="18dp"
             android:layout_marginBottom="1dp"/>
 
         <TextView
