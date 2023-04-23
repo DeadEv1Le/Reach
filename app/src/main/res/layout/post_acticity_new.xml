@@ -73,7 +73,7 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="100dp"
-                android:textColor="@color/black"
+                android:textColor="@color/light_gray"
                 android:id="@+id/ararat"
                 android:textAllCaps="false"
                 android:layout_marginLeft="10dp"
@@ -88,7 +88,7 @@
                 android:background="@drawable/lavender_border"
                 android:layout_marginLeft="10dp"
                 android:textAllCaps="false"
-                android:textColor="#737373"
+                android:textColor="@color/light_gray"
                 android:layout_height="wrap_content"
                 android:text="Aragats"/>
 
@@ -104,18 +104,49 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
-                android:id="@+id/ajdahak1"
+                android:id="@+id/khustup"
                 android:background="@drawable/lavender_border"
                 android:layout_marginLeft="10dp"
                 android:textAllCaps="false"
                 android:textColor="#737373"
                 android:layout_height="wrap_content"
-                android:text="Ajdahak"/>
-            <Button
+                android:text="Khustup"/>
+            <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/kaputjugh"
+                android:background="@drawable/lavender_border"
                 android:layout_marginLeft="10dp"
-                android:text="Filter 4"/>
+                android:textAllCaps="false"
+                android:textColor="#737373"
+                android:layout_height="wrap_content"
+                android:text="Kaputjugh"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:id="@+id/ishxanasar"
+                android:background="@drawable/lavender_border"
+                android:layout_marginLeft="10dp"
+                android:textAllCaps="false"
+                android:textColor="#737373"
+                android:layout_height="wrap_content"
+                android:text="Ishxanasar"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:id="@+id/araLer"
+                android:background="@drawable/lavender_border"
+                android:layout_marginLeft="10dp"
+                android:textAllCaps="false"
+                android:textColor="#737373"
+                android:layout_height="wrap_content"
+                android:text="Arailer"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:id="@+id/artavazFilter"
+                android:background="@drawable/lavender_border"
+                android:layout_marginLeft="10dp"
+                android:textAllCaps="false"
+                android:textColor="#737373"
+                android:layout_height="wrap_content"
+                android:text="Artavaz"/>
 
 
         </LinearLayout>
