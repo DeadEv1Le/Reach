@@ -1,0 +1,31 @@
+<resources>
+    <string name="tfe_od_app_name" translation_description="Object Detection demo app [CHAR_LIMIT=40]">Reach The Peak</string>
+    <string name="tfe_od_camera_error" translation_description="Error regarding camera support[CHAR_LIMIT=40]">This device doesn\'t support Camera2 API.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string-array name="mountain_names">
+        <item>Mountain Arara</item>
+        <item>Mountain Aragats</item>
+        <item>Mountain Kaputjugh</item>
+        <item>Mountain Khustup</item>
+        <item>Mountain Ishxanasar</item>
+        <item>Mountain Ajdahak</item>
+        <item>Mountain Arailer</item>
+        <item>Mountin Artavaz</item>
+
+    </string-array>
+    <string-array name="mountain_height">
+        <item>5137</item>
+        <item>4095</item>
+        <item>3906</item>
+        <item>3206</item>
+        <item>3552</item>
+        <item>3597</item>
+        <item>2575</item>
+        <item>2929</item>
+    </string-array>
+
+
+</resources>

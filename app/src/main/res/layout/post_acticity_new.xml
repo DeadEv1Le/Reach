@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="#FFFFFF"
+
+    tools:context=".ui.post.PostFragment">
+
+    <LinearLayout
+        android:id="@+id/post_top"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/welcome_greed"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text=""
+            android:textColor="@color/black"
+            android:textSize="23dp"
+            android:textStyle="bold|normal" />
+
+        <ImageView
+            android:layout_width="53dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/img_12"
+
+            />
+    </LinearLayout>
+    <androidx.appcompat.widget.SearchView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="19dp"
+        android:layout_below="@id/post_top"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="17dp"
+        android:id="@+id/search"
+        app:iconifiedByDefault="false"
+        app:searchHintIcon="@null"
+        app:queryHint="Search..."
+        android:focusable="false"
+        android:elevation="10dp"
+        app:closeIcon="@drawable/baseline_clear_24"
+        app:searchIcon="@drawable/baseline_search_24"
+        android:background="@drawable/search_view"/>
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/search"
+        android:id="@+id/filter_container"
+        android:layout_marginStart="14dp"
+
+        android:layout_marginTop="16dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="100dp"
+                android:textColor="@color/black"
+                android:id="@+id/ararat"
+                android:textAllCaps="false"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:text="Ararat"
+                android:background="@drawable/lavender_border"
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:id="@+id/aragats"
+                android:background="@drawable/lavender_border"
+                android:layout_marginLeft="10dp"
+                android:textAllCaps="false"
+                android:textColor="#737373"
+                android:layout_height="wrap_content"
+                android:text="Aragats"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:id="@+id/ajdahak"
+                android:background="@drawable/lavender_border"
+                android:layout_marginLeft="10dp"
+                android:textAllCaps="false"
+                android:textColor="#737373"
+                android:layout_height="wrap_content"
+                android:text="Ajdahak"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:id="@+id/ajdahak1"
+                android:background="@drawable/lavender_border"
+                android:layout_marginLeft="10dp"
+                android:textAllCaps="false"
+                android:textColor="#737373"
+                android:layout_height="wrap_content"
+                android:text="Ajdahak"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Filter 4"/>
+
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/filter_container"
+        android:layout_marginTop="14dp"
+
+
+        android:scrollbars="vertical" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="17dp"
+        android:layout_marginBottom="76dp"
+        android:backgroundTint="@color/lavender"
+        android:src="@drawable/baseline_add_24"
+        app:tint="@color/white" />
+
+</RelativeLayout>

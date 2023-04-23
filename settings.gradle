@@ -1,0 +1,9 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = 'Reach The Peak'
+include ':app', ':lib_interpreter', ':lib_task_api'

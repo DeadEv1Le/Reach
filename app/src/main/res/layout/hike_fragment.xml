@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ndroid="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/gradient_backround"
+    >
+
+   <TextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Tourism"
+       android:textColor="#fff"
+       android:textStyle="bold"
+       android:textSize="40dp"
+       android:layout_marginTop="30dp"
+       android:layout_marginLeft="22dp"
+
+       />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Companies"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:textSize="40dp"
+        android:layout_marginLeft="22dp"
+
+        />
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Recomended by tourists"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginLeft="22dp"
+
+        android:layout_marginTop="50dp"
+        />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:layout_marginTop="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="270dp"
+
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:elevation="10dp"
+                    app:cardCornerRadius="8dp">
+
+
+                    <ImageView
+                        android:id="@+id/roundedImageView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/walk2" />
+
+                    <ImageView
+                        android:id="@+id/arara_logo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/arara_logo" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/arara_logo"
+                        android:layout_marginTop="290dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:text="Arara Tours"
+                            android:textColor="#fff"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+
+                            />
+
+                        <RatingBar
+                            android:id="@+id/ararat_rate"
+                            android:layout_width="240dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-70dp"
+                            android:layout_marginTop="-18dp"
+                            android:numStars="5"
+                            android:progressTint="#ffc317"
+                            android:rating="4.8"
+                            android:scaleX="0.3"
+                            android:scaleY="0.3"
+                            android:stepSize="1.0"
+
+                            />
+
+                        <TextView
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="90dp"
+                            android:layout_marginTop="-38dp"
+                            android:text="4.8"
+                            android:textColor="#fff"
+                            android:textSize="11dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:text="Be on top of things.
+                            Enjoy all beauty of the Caucasus... "
+                            android:textColor="#CFCFCF"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:elevation="10dp"
+                    app:cardCornerRadius="8dp">
+
+
+                    <ImageView
+                        android:id="@+id/roundedImageView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+
+                        android:src="@drawable/ararat_tour_back" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="290dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:text="Ararat Tour"
+                            android:textColor="#fff"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+
+                            />
+
+                        <RatingBar
+                            android:id="@+id/arara_rate"
+                            android:layout_width="240dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-70dp"
+                            android:layout_marginTop="-18dp"
+                            android:numStars="5"
+                            android:progressTint="#ffc317"
+                            android:rating="4.5"
+                            android:scaleX="0.3"
+                            android:scaleY="0.3"
+                            android:stepSize="0.5"
+
+                            />
+
+                        <TextView
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="90dp"
+                            android:layout_marginTop="-38dp"
+                            android:text="4.5"
+                            android:textColor="#fff"
+                            android:textSize="11dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:text="This is the way we welcome all our guests in Armenia."
+                            android:textColor="#CFCFCF"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:elevation="10dp"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/roundedImageVie3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+
+                        android:src="@drawable/hatis_back" />
+                    <ImageView
+                        android:id="@+id/hatis_logo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/hatis" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="290dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:text="Hatis Tour"
+                            android:textColor="#fff"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+
+                            />
+
+                        <RatingBar
+                            android:id="@+id/hatis_rate"
+                            android:layout_width="240dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-70dp"
+                            android:layout_marginTop="-18dp"
+                            android:numStars="5"
+                            android:progressTint="#ffc317"
+                            android:rating="4.8"
+                            android:scaleX="0.3"
+                            android:scaleY="0.3"
+                            android:stepSize="1.0"
+
+                            />
+
+                        <TextView
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="90dp"
+                            android:layout_marginTop="-38dp"
+                            android:text="5.0"
+                            android:textColor="#fff"
+                            android:textSize="11dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:text="Reach the top of
+                             your dreams with us."
+                            android:textColor="#CFCFCF"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:elevation="10dp"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/roundedImageView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+
+                        android:src="@drawable/one_back" />
+                    <ImageView
+                        android:id="@+id/one_logo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:src="@drawable/one_logo" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="290dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:text="OneWay Tour"
+                            android:textColor="#fff"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+
+                            />
+
+                        <RatingBar
+                            android:id="@+id/oneway_rate"
+                            android:layout_width="240dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-70dp"
+                            android:layout_marginTop="-18dp"
+                            android:numStars="5"
+                            android:progressTint="#ffc317"
+                            android:rating="4.5"
+                            android:scaleX="0.3"
+                            android:scaleY="0.3"
+                            android:stepSize="0.5"
+
+                            />
+
+                        <TextView
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="90dp"
+                            android:layout_marginTop="-38dp"
+                            android:text="4.7"
+                            android:textColor="#fff"
+                            android:textSize="11dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:text="We pride ourselves on offering an excellent,
+ fast and highly professional service."
+                            android:textColor="#CFCFCF"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:elevation="10dp"
+                    app:cardCornerRadius="8dp">
+
+                    <ImageView
+                        android:id="@+id/roundedImageVie5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+
+                        android:src="@drawable/fun_back" />
+<!--                    <ImageView-->
+<!--                        android:id="@+id/arm_fun_logo"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="10dp"-->
+<!--                        android:src="@drawable/armenia_fun_travel" />-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="290dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:text="Armenia Fun Travel"
+                            android:textColor="#fff"
+                            android:textSize="20dp"
+                            android:textStyle="bold"
+
+                            />
+
+                        <RatingBar
+                            android:id="@+id/fun_armenia_rate"
+                            android:layout_width="240dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-70dp"
+                            android:layout_marginTop="-18dp"
+                            android:numStars="5"
+                            android:progressTint="#ffc317"
+                            android:rating="4.8"
+                            android:scaleX="0.3"
+                            android:scaleY="0.3"
+                            android:stepSize="1.0"
+
+                            />
+
+                        <TextView
+                            android:layout_width="30dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="90dp"
+                            android:layout_marginTop="-38dp"
+                            android:text="5.0"
+                            android:textColor="#fff"
+                            android:textSize="11dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="200dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:text="Fun Travel welcomes
+                             tourists from all over the world."
+                            android:textColor="#CFCFCF"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </HorizontalScrollView>
+</LinearLayout>

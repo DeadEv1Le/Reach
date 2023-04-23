@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="#FFFFFF"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <com.github.siyamed.shapeimageview.mask.PorterShapeImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:siShape="@drawable/shape_for_block"
+                android:src="@drawable/aragats15"
+                android:scaleType="fitXY"
+
+                app:siSquare="true"/>
+
+            <ImageView
+
+                android:id="@+id/arrow_back_to_main"
+                android:layout_width="48dp"
+
+                android:layout_height="48dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:onClick="onClickBtn"
+                android:src="@drawable/arrow_back"
+                card_view:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck,TouchTargetSizeCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="300dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="18dp"
+                android:layout_height="wrap_content"
+                android:text="Mount Aragats: North of the Ararat Plain"
+                android:textColor="#000"
+                android:textSize="22dp"
+                android:textStyle="bold"/>
+            <!--                android:fontFamily="@font/dongle_bold"-->
+
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/heart"
+                android:layout_marginTop="18dp"
+                android:layout_marginLeft="4dp"
+
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+
+            >
+
+            <RatingBar
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="-10dp"
+                android:progressTint="#ffc317"
+                android:rating="4.8"
+                android:scaleX="0.3"
+                android:scaleY="0.3"
+                android:stepSize="0.5"
+                card_view:ignore="SpeakableTextPresentCheck" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="4.6 Ratings"
+                android:textStyle="bold"
+                android:textSize="13dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:text="150"
+                android:layout_marginLeft="130dp"
+                android:textStyle="bold"
+                android:textSize="13dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
+                android:textStyle="bold"
+                android:text="Reviews"
+                android:textSize="13dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="33dp"
+            android:layout_marginTop="7dp"
+
+
+            >
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:text="Distance"
+                android:textColor="#000"
+                />
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:text="Elevation"
+                android:textColor="#000"
+
+                />
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:text="Dificalty"
+                android:textColor="#000"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="33dp"
+            android:layout_marginTop="7dp"
+
+
+            >
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:text="  2.3 km"
+                android:textColor="#F45353"
+                />
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:text=" 5 137 m"
+                android:textColor="#F45353"
+
+                />
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:text="Modereate"
+                android:textColor="#F45353"
+                />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="380dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="12dp"
+
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Overview"
+                android:textColor="#000"
+                android:textStyle="bold"
+                android:textSize="17dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="6dp"
+                android:textStyle="bold"
+                android:textColor="#9F9E9E"
+                android:textSize="13dp"
+                android:text="Mount Ararat is a snow-capped and dormant compound volcano in the extreme east of Turkey. It consists of two major volcanic cones: Greater Ararat and Little Ararat. Greater Ararat is the highest peak in Turkey and the Armenian Highland with an elevation of 5,137 m (16,854 ft),Little Ararat's elevation is 3,896 m (12,782 ft)."
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

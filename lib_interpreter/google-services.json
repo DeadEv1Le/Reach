@@ -1,0 +1,84 @@
+{
+  "project_info": {
+    "project_number": "319360049999",
+    "project_id": "reach-the-peak-53093",
+    "storage_bucket": "reach-the-peak-53093.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319360049999:android:9fd42302060ab629ce1b3a",
+        "android_client_info": {
+          "package_name": "org.tensorflow.lite.examples.detection"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "319360049999-pjpiak04g7bik92tat2qqqpi013oapsk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.tensorflow.lite.examples.detection",
+            "certificate_hash": "3587bd99e3771cb3dbf27e7737e1021afb446a55"
+          }
+        },
+        {
+          "client_id": "319360049999-tbvokjmphl675u8kmarlcsemcna05nhi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnhGpxSbN7yfddBoZvG3XtY3nmXvgJJTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "319360049999-tbvokjmphl675u8kmarlcsemcna05nhi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:319360049999:android:b6c4ebe2a4015f25ce1b3a",
+        "android_client_info": {
+          "package_name": "org.tensorflow.lite.examples.detection.tflite"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "319360049999-88jh8us5il8agottvn6bgv9dj3aq58qi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.tensorflow.lite.examples.detection.tflite",
+            "certificate_hash": "3587bd99e3771cb3dbf27e7737e1021afb446a55"
+          }
+        },
+        {
+          "client_id": "319360049999-tbvokjmphl675u8kmarlcsemcna05nhi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnhGpxSbN7yfddBoZvG3XtY3nmXvgJJTk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "319360049999-tbvokjmphl675u8kmarlcsemcna05nhi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
