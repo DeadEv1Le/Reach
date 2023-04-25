@@ -341,6 +341,7 @@ public class PostFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     username = snapshot.child("username").getValue(String.class);
+                    
 
                     // You can use the `userName` variable here
                     welcomeText.setText("Welcome! \n" + username);
