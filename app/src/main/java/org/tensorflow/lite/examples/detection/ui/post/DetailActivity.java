@@ -33,11 +33,13 @@ import org.tensorflow.lite.examples.detection.R;
 public class DetailActivity extends AppCompatActivity {
 
     TextView detailDesc, detailTitle, detailLang, detailUserName, detailPlaceName;
-    ImageView detailImage;
+    ImageView detailImage, detailProfileImage;
     FloatingActionButton deleteButton, editButton;
     String key = "";
     String imageUrl = "";
     DatabaseReference mDatabaseRef;
+
+    String profileImage;
 
 
     @Override
@@ -64,6 +66,7 @@ public class DetailActivity extends AppCompatActivity {
             Glide.with(this).load(imageUrl).into(detailImage);
         }
 
+
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String uid = auth.getCurrentUser().getUid();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Tourist Posts").child(key);
@@ -74,6 +77,7 @@ public class DetailActivity extends AppCompatActivity {
                 if (snapshot.exists()) {
                     String userName = snapshot.child("userName").getValue(String.class);
                     detailUserName.setText(userName);
+
                     Toast.makeText(DetailActivity.this, detailUserName.getText(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -81,6 +85,28 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(DetailActivity.this, "Error: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+        detailProfileImage = findViewById(R.id.userPostDetailPageImage);
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    profileImage = snapshot.child("profileImageUrl").getValue(String.class);
+
+                    Glide.with(getApplicationContext())
+                            .load(profileImage)
+                            .into(detailProfileImage);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle errors here
             }
         });
 

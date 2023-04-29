@@ -25,8 +25,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -38,7 +41,7 @@ public class UpdateActivity extends AppCompatActivity {
     ImageView updateImage;
     Button updateButton;
     EditText updateDesc, updateTitle, updateLang, updatePlaceName;
-    String title, desc, lang, userName, placeName;
+    String title, desc, lang, userName, profileImage, placeName;
     String imageUrl;
     String key, oldImageURL;
     Uri uri;
@@ -98,6 +101,11 @@ public class UpdateActivity extends AppCompatActivity {
         });
     }
     public void saveData(){
+        if (uri == null) {
+            Toast.makeText(this, "No image selected", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         storageReference = FirebaseStorage.getInstance().getReference().child("Android Images").child(uri.getLastPathSegment());
         AlertDialog.Builder builder = new AlertDialog.Builder(UpdateActivity.this);
         builder.setCancelable(false);
@@ -120,16 +128,35 @@ public class UpdateActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
     }
     public void updateData(){
         FirebaseAuth auth = FirebaseAuth.getInstance();
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Tourist Posts");
+
 
         title = updateTitle.getText().toString().trim();
         desc = updateDesc.getText().toString().trim();
         lang = updateLang.getText().toString();
-        userName = auth.getCurrentUser().getEmail();
+
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    profileImage = snapshot.child("userImage").getValue(String.class);
+                    userName = snapshot.child("userName").getValue(String.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Handle errors here
+            }
+        });
+
         placeName = updatePlaceName.getText().toString().trim();
-        DataClass dataClass = new DataClass(title, desc, lang, imageUrl, userName, placeName);
+
+        DataClass dataClass = new DataClass(title, desc, lang, imageUrl, userName, profileImage,placeName);
         databaseReference.setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
