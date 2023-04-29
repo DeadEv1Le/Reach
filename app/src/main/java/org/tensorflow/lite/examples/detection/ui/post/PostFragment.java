@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,7 +19,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.shape.CornerFamily;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,7 +46,8 @@ public class PostFragment extends Fragment {
     AlertDialog dialog;
     Button araratFilter, aragatsFilter, ajdahakFilter, khustupFilter, kaputjughFilter, ishxanasarFilter, araFilter, artavazFilter;
 
-    String username;
+    String username, profileImage;
+
     TextView welcomeText;
     @SuppressLint("MissingInflatedId")
     @Override
@@ -66,6 +71,7 @@ public class PostFragment extends Fragment {
         dialog.show();
 
         welcomeText = view.findViewById(R.id.welcome_greed);
+
 
         //================= Filter Buttons ==================
         araratFilter = view.findViewById(R.id.ararat);
@@ -336,15 +342,19 @@ public class PostFragment extends Fragment {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String uid = auth.getCurrentUser().getUid();
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     username = snapshot.child("username").getValue(String.class);
-                    
+                    profileImage = snapshot.child("profileImageUrl").getValue(String.class);
 
                     // You can use the `userName` variable here
                     welcomeText.setText("Welcome! \n" + username);
+                    Glide.with(requireContext())
+                            .load(profileImage)
+                            .into((ImageView) view.findViewById(R.id.userPostPageImage));
 
                 }
             }

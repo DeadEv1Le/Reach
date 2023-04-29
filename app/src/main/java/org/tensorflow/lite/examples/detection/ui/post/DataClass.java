@@ -3,6 +3,8 @@ package org.tensorflow.lite.examples.detection.ui.post;
 
 public class DataClass {
     private String dataImage;
+
+    private String userImage;
     private String dataTitle;
     private String dataDesc;
     private String dataLang;
@@ -11,12 +13,14 @@ public class DataClass {
     private String key;
 
 
-    public DataClass(String dataImage, String dataTitle, String dataDesc, String dataLang, String userName, String placeName) {
+
+    public DataClass(String dataImage, String dataTitle, String dataDesc, String dataLang, String userName, String userImage, String placeName) {
         this.dataImage = dataImage;
         this.dataTitle = dataTitle;
         this.dataDesc = dataDesc;
         this.dataLang = dataLang;
         this.userName = userName;
+        this.userImage = userImage;
         this.placeName = placeName;
     }
 
@@ -24,6 +28,13 @@ public class DataClass {
     }
 
 
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
+    }
 
     public String getDataImage() {
         return dataImage;

@@ -44,6 +44,7 @@ public class UploadActivity extends AppCompatActivity {
     Button saveButton;
     EditText uploadTopic, uploadDesc, uploadLang, uploadPlaceName;
     String userName;
+    String userImage;
     String imageURL;
     Uri uri;
 
@@ -141,11 +142,10 @@ public class UploadActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     userName = snapshot.child("username").getValue(String.class);
-                    // Use the userName value here
-                    DataClass dataClass = new DataClass(imageURL, title, desc, lang, userName, placeName);
+                    userImage = snapshot.child("profileImageUrl").getValue(String.class);
 
-                    //We are changing the child from title to currentDate,
-                    // because we will be updating title as well and it may affect child value.
+                    DataClass dataClass = new DataClass(imageURL, title, desc, lang, userName, userImage, placeName);
+
                     String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
                     FirebaseDatabase.getInstance().getReference("Tourist Posts").child(currentDate)
                             .setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -160,13 +160,17 @@ public class UploadActivity extends AppCompatActivity {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     Toast.makeText(UploadActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
+
                                 }
                             });
+
                 }
             }
 
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+
                 // Handle the error here
             }
         });
