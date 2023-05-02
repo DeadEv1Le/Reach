@@ -12,9 +12,10 @@ public class DataClass {
     private String placeName;
     private String key;
 
+    private String category;
 
 
-    public DataClass(String dataImage, String dataTitle, String dataDesc, String dataLang, String userName, String userImage, String placeName) {
+    public DataClass(String dataImage, String dataTitle, String dataDesc, String dataLang, String userName, String userImage, String placeName, String category) {
         this.dataImage = dataImage;
         this.dataTitle = dataTitle;
         this.dataDesc = dataDesc;
@@ -22,11 +23,22 @@ public class DataClass {
         this.userName = userName;
         this.userImage = userImage;
         this.placeName = placeName;
+        this.category = category;
+
     }
+
 
     public DataClass() {
     }
 
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public String getUserImage() {
         return userImage;

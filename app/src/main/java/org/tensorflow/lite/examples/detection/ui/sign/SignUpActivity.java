@@ -68,8 +68,11 @@ public class SignUpActivity extends AppCompatActivity {
                                 FirebaseUser firebaseUser = auth.getCurrentUser();
                                 String userId = firebaseUser.getUid();
 
+
                                 // Create a new User object with the additional fields
                                 User user = new User(username, name, email);
+
+
 
                                 // Add the user to the Realtime Database under the user's UID
                                 FirebaseDatabase.getInstance().getReference("Users").child(userId).setValue(user)
