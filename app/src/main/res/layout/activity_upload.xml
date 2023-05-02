@@ -16,7 +16,9 @@
         android:layout_marginStart="20dp"
         app:cardCornerRadius="30dp"
         app:cardElevation="20dp">
-
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,7 +30,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Upload Data"
+                android:text="Add Post"
                 android:textSize="30sp"
                 android:textAlignment="center"
                 android:textColor="@color/lavender"/>
@@ -40,7 +42,32 @@
                 android:id="@+id/uploadImage"
                 android:layout_marginTop="10dp"
                 android:scaleType="fitXY"/>
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/uploadCategory"
+                android:layout_marginTop="20dp">
 
+                <RadioButton
+                    android:id="@+id/hikeRadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hiking" />
+
+                <RadioButton
+                    android:id="@+id/recomRadioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recommendation" />
+
+                <RadioButton
+                    android:id="@+id/shareRadio"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sharing" />
+
+            </RadioGroup>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -95,7 +122,7 @@
                 app:cornerRadius = "20dp"/>
 
         </LinearLayout>
-
+        </ScrollView>
     </androidx.cardview.widget.CardView>
 
 </ScrollView>

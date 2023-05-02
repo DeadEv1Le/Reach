@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -123,7 +125,7 @@ public class UploadActivity extends AppCompatActivity {
         });
     }
 
-    public void uploadData(){
+    public void uploadData() {
         String title = uploadTopic.getText().toString();
         String desc = uploadDesc.getText().toString();
         String lang = uploadLang.getText().toString();
@@ -132,9 +134,6 @@ public class UploadActivity extends AppCompatActivity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         String email = auth.getCurrentUser().getEmail();
         String uid = auth.getCurrentUser().getUid();
-//        String userName = email.substring(0, email.indexOf("@"));
-
-
 
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
         userRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -144,14 +143,20 @@ public class UploadActivity extends AppCompatActivity {
                     userName = snapshot.child("username").getValue(String.class);
                     userImage = snapshot.child("profileImageUrl").getValue(String.class);
 
-                    DataClass dataClass = new DataClass(imageURL, title, desc, lang, userName, userImage, placeName);
+                    // get the selected radio button's value
+                    RadioGroup categoryGroup = findViewById(R.id.uploadCategory);
+                    int selectedId = categoryGroup.getCheckedRadioButtonId();
+                    RadioButton selectedRadio = findViewById(selectedId);
+                    String category = selectedRadio.getText().toString();
+
+                    DataClass dataClass = new DataClass(imageURL, title, desc, lang, userName, userImage, placeName, category);
 
                     String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
                     FirebaseDatabase.getInstance().getReference("Tourist Posts").child(currentDate)
                             .setValue(dataClass).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()){
+                                    if (task.isSuccessful()) {
                                         Toast.makeText(UploadActivity.this, "Saved", Toast.LENGTH_SHORT).show();
                                         finish();
                                     }
@@ -160,19 +165,16 @@ public class UploadActivity extends AppCompatActivity {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
                                     Toast.makeText(UploadActivity.this, e.getMessage().toString(), Toast.LENGTH_SHORT).show();
-
                                 }
                             });
-
                 }
             }
 
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
                 // Handle the error here
             }
         });
+
     }
 }

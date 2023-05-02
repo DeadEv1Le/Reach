@@ -45,7 +45,6 @@ public class PostFragment extends Fragment {
     SearchView searchView;
     AlertDialog dialog;
     Button araratFilter, aragatsFilter, ajdahakFilter, khustupFilter, kaputjughFilter, ishxanasarFilter, araFilter, artavazFilter;
-
     String username, profileImage;
 
     TextView welcomeText;
@@ -291,6 +290,9 @@ public class PostFragment extends Fragment {
                 }
                 Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
                 adapter.searchDataList(searchList);
+
+
+
             }
         });
 
