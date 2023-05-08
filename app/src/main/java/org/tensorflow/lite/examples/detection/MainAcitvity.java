@@ -17,7 +17,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 
-import com.github.clans.fab.FloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 
 import org.tensorflow.lite.examples.detection.databinding.MainResBinding;
@@ -33,8 +33,10 @@ import java.util.ArrayList;
 
 public class MainAcitvity extends AppCompatActivity  {
 
-        RelativeLayout araratImage, aragatsmount;
-       private MainResBinding binding;
+    RelativeLayout araratImage, aragatsmount;
+    private MainResBinding binding;
+
+    FloatingActionButton cameraOpenButton;
 
 
 
@@ -66,6 +68,16 @@ public class MainAcitvity extends AppCompatActivity  {
             }
             return true;
         });
+
+        cameraOpenButton = findViewById(R.id.cameraButton);
+
+        cameraOpenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainAcitvity.this, DetectorActivity.class));
+            }
+        });
+
 
 
         // ============ Tour Image Shape =========
