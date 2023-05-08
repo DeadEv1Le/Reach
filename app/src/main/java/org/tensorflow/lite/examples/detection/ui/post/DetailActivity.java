@@ -4,7 +4,6 @@ package org.tensorflow.lite.examples.detection.ui.post;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,8 +31,8 @@ import org.tensorflow.lite.examples.detection.R;
 
 public class DetailActivity extends AppCompatActivity {
 
-    TextView detailDesc, detailTitle, detailLang, detailUserName, detailPlaceName;
-    ImageView detailImage, detailProfileImage;
+    TextView detailDesc, detailTitle, detailCategory, detailUserName, detailPlaceName, detilContact;
+    ImageView detailImage, detailProfileImage, detailUserAddedPostDetailPageImage;
     FloatingActionButton deleteButton, editButton;
     String key = "";
     String imageUrl = "";
@@ -41,9 +40,11 @@ public class DetailActivity extends AppCompatActivity {
 
     String profileImage;
 
+    ImageView rollback;
 
+    @SuppressLint("MissingInflatedId")
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)   {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
@@ -52,35 +53,51 @@ public class DetailActivity extends AppCompatActivity {
         detailTitle = findViewById(R.id.detailTitle);
         deleteButton = findViewById(R.id.deleteButton);
         editButton = findViewById(R.id.editButton);
-        detailLang = findViewById(R.id.detailLang);
+        detailCategory = findViewById(R.id.postCategory);
         detailUserName = findViewById(R.id.detailUserName);
+        detailUserAddedPostDetailPageImage = findViewById(R.id.userAddedPostDetailPageImage);
         detailPlaceName = findViewById(R.id.detailPlaceName);
+        detilContact = findViewById(R.id.detailContact);
+
+        rollback = findViewById(R.id.rollback);
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
             detailDesc.setText(bundle.getString("Description"));
             detailTitle.setText(bundle.getString("Title"));
-            detailLang.setText(bundle.getString("Language"));
+            detailCategory.setText(bundle.getString("Category"));
             detailPlaceName.setText(bundle.getString("PlaceName"));
+            detilContact.setText(bundle.getString("Contacts"));
             key = bundle.getString("Key");
             imageUrl = bundle.getString("Image");
             Glide.with(this).load(imageUrl).into(detailImage);
         }
 
 
+        rollback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), MainAcitvity.class));
+            }
+        });
+
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String uid = auth.getCurrentUser().getUid();
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("Tourist Posts").child(key);
 
 
+      mDatabaseRef = FirebaseDatabase.getInstance().getReference("Tourist Posts").child(key);
 
 
-        mDatabaseRef.addValueEventListener(new ValueEventListener() {
+      mDatabaseRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     String userName = snapshot.child("userName").getValue(String.class);
                     detailUserName.setText(userName);
-
+                    String postedUserImage = snapshot.child("userImage").getValue(String.class);
+                    Glide.with(getApplicationContext())
+                            .load(postedUserImage)
+                            .into(detailUserAddedPostDetailPageImage);
                     Toast.makeText(DetailActivity.this, detailUserName.getText(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -138,7 +155,7 @@ public class DetailActivity extends AppCompatActivity {
                 Intent intent = new Intent(DetailActivity.this, UpdateActivity.class)
                         .putExtra("Title", detailTitle.getText().toString())
                         .putExtra("Description", detailDesc.getText().toString())
-                        .putExtra("Language", detailLang.getText().toString())
+                        .putExtra("Category", detailCategory.getText().toString())
                         .putExtra("Image", imageUrl)
                         .putExtra("PlaceName", detailPlaceName.getText().toString())
                         .putExtra("Key", key);

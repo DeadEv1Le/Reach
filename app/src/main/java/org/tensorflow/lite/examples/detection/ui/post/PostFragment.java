@@ -44,7 +44,7 @@ public class PostFragment extends Fragment {
     MyAdapter adapter;
     SearchView searchView;
     AlertDialog dialog;
-    Button araratFilter, aragatsFilter, ajdahakFilter, khustupFilter, kaputjughFilter, ishxanasarFilter, araFilter, artavazFilter;
+    Button araratFilter, aragatsFilter, ajdahakFilter, khustupFilter, kaputjughFilter, ishxanasarFilter, araFilter, artavazFilter, sharingFilter, hikingFilter;
     String username, profileImage;
 
     TextView welcomeText;
@@ -73,6 +73,8 @@ public class PostFragment extends Fragment {
 
 
         //================= Filter Buttons ==================
+        sharingFilter = view.findViewById(R.id.share);
+        hikingFilter = view.findViewById(R.id.hike);
         araratFilter = view.findViewById(R.id.ararat);
         aragatsFilter = view.findViewById(R.id.aragats);
         ajdahakFilter = view.findViewById(R.id.ajdahak);
@@ -102,6 +104,58 @@ public class PostFragment extends Fragment {
                 ArrayList<DataClass> searchList = new ArrayList<>();
                 for (DataClass dataClass: dataList){
                     if (dataClass.getDataTitle().toLowerCase().contains(text.toLowerCase()) || dataClass.getPlaceName().toLowerCase().contains(text.toLowerCase())){
+
+                        searchList.add(dataClass);
+                    }
+                }
+                Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+                adapter.searchDataList(searchList);
+            }
+        });
+        sharingFilter.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick(View v) {
+                @SuppressLint("ResourceType")
+                String text = sharingFilter.getText().toString();
+                araratFilter.setTextColor(R.color.light_gray);
+                aragatsFilter.setTextColor(R.color.black);
+                ajdahakFilter.setTextColor(R.color.light_gray);
+                khustupFilter.setTextColor(R.color.light_gray);
+                kaputjughFilter.setTextColor(R.color.light_gray);
+                ishxanasarFilter.setTextColor(R.color.light_gray);
+                araFilter.setTextColor(R.color.light_gray);
+                artavazFilter.setTextColor(R.color.light_gray);
+
+                ArrayList<DataClass> searchList = new ArrayList<>();
+                for (DataClass dataClass: dataList){
+                    if (dataClass.getCategory().toLowerCase().contains(text.toLowerCase())){
+
+                        searchList.add(dataClass);
+                    }
+                }
+                Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+                adapter.searchDataList(searchList);
+            }
+        });
+        hikingFilter.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
+            @Override
+            public void onClick(View v) {
+                @SuppressLint("ResourceType")
+                String text = hikingFilter.getText().toString();
+                araratFilter.setTextColor(R.color.light_gray);
+                aragatsFilter.setTextColor(R.color.black);
+                ajdahakFilter.setTextColor(R.color.light_gray);
+                khustupFilter.setTextColor(R.color.light_gray);
+                kaputjughFilter.setTextColor(R.color.light_gray);
+                ishxanasarFilter.setTextColor(R.color.light_gray);
+                araFilter.setTextColor(R.color.light_gray);
+                artavazFilter.setTextColor(R.color.light_gray);
+
+                ArrayList<DataClass> searchList = new ArrayList<>();
+                for (DataClass dataClass: dataList){
+                    if (dataClass.getCategory().toLowerCase().contains(text.toLowerCase())){
 
                         searchList.add(dataClass);
                     }

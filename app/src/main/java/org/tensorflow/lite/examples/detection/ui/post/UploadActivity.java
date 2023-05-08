@@ -48,6 +48,7 @@ public class UploadActivity extends AppCompatActivity {
     String userName;
     String userImage;
     String imageURL;
+    String category;
     Uri uri;
 
     @Override
@@ -128,11 +129,12 @@ public class UploadActivity extends AppCompatActivity {
     public void uploadData() {
         String title = uploadTopic.getText().toString();
         String desc = uploadDesc.getText().toString();
-        String lang = uploadLang.getText().toString();
+        String contacts = uploadLang.getText().toString();
         String placeName = uploadPlaceName.getText().toString();
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         String email = auth.getCurrentUser().getEmail();
+
         String uid = auth.getCurrentUser().getUid();
 
         DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
@@ -147,9 +149,9 @@ public class UploadActivity extends AppCompatActivity {
                     RadioGroup categoryGroup = findViewById(R.id.uploadCategory);
                     int selectedId = categoryGroup.getCheckedRadioButtonId();
                     RadioButton selectedRadio = findViewById(selectedId);
-                    String category = selectedRadio.getText().toString();
+                   category = selectedRadio.getText().toString();
 
-                    DataClass dataClass = new DataClass(imageURL, title, desc, lang, userName, userImage, placeName, category);
+                    DataClass dataClass = new DataClass(imageURL, title, desc,  userName, userImage, placeName, category, contacts);
 
                     String currentDate = DateFormat.getDateTimeInstance().format(Calendar.getInstance().getTime());
                     FirebaseDatabase.getInstance().getReference("Tourist Posts").child(currentDate)

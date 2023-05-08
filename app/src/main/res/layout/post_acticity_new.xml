@@ -80,7 +80,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="100dp"
+                android:textColor="@color/light_gray"
+                android:id="@+id/share"
+                android:textAllCaps="false"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:text="Sharing"
+                android:background="@drawable/lavender_border"
+                />
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="100dp"
+                android:textColor="@color/light_gray"
+                android:id="@+id/hike"
+                android:textAllCaps="false"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:text="Hiking"
+                android:background="@drawable/lavender_border"
+                />
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="100dp"
                 android:textColor="@color/light_gray"

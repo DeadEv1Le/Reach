@@ -91,15 +91,15 @@
                 android:textColor="@color/lavender"/>
 
             <EditText
+                android:id="@+id/uploadLang"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                android:id="@+id/uploadLang"
-                android:background="@drawable/lavender_border"
                 android:layout_marginTop="20dp"
-                android:padding="16dp"
-                android:hint="SomeText"
+                android:background="@drawable/lavender_border"
                 android:gravity="start|center_vertical"
-                android:textColor="@color/lavender"/>
+                android:hint="Contacts"
+                android:padding="16dp"
+                android:textColor="@color/lavender" />
 
             <EditText
                 android:layout_width="match_parent"

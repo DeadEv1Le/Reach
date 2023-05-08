@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.post.DetailActivity">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -17,7 +22,8 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.2"
+            android:id="@+id/rollback"
+            android:layout_weight="1.1"
             android:layout_marginTop="15dp"
             android:src="@drawable/baseline_arrow_back_24" />
 
@@ -75,7 +81,120 @@
     </com.google.android.material.card.MaterialCardView>
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_height="50dp">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:backgroundTint="#3300C3FF"
+                app:cardCornerRadius="8dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Hiking"
+                    android:id="@+id/postCategory"
+                    android:padding="5dp"
+                    />
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Jan 1, 2021 "
+                android:id="@+id/postData"
+                android:layout_marginTop="4dp"
+                android:textAlignment="viewEnd"/>
+
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="Title"
+        android:layout_gravity="center"
+        android:id="@+id/detailTitle"
+        android:textSize="25sp"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="#2C2C2C"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        >
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:cardCornerRadius="30dp"
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/userAddedPostDetailPageImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_12" />
+
+        </com.google.android.material.card.MaterialCardView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="By:User Name"
+            android:paddingTop="10dp"
+            android:id="@+id/detailUserName"
+            android:paddingStart="10dp"
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/detailDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="15dp"
+        android:paddingStart="20dp"
+        android:paddingBottom="10dp"
+        android:paddingEnd="10dp"
+        android:text="Description"
+        android:fontFamily="@font/poppins_light"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:padding="20dp"
+            android:layout_marginTop="12dp"
+            android:drawableStart="@drawable/baseline_pin_drop_24"
+            android:text="PlaceName"
+            android:fontFamily="@font/poppins_medium"
+
+            android:layout_gravity="center"
+            android:id="@+id/detailPlaceName"
+            android:textSize="12sp"
+            android:textColor="@color/light_gray"/>
 
     </LinearLayout>
     <TextView
@@ -83,53 +202,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:padding="20dp"
-        android:text="Title"
+        android:drawableStart="@drawable/ic_baseline_person_24"
+        android:text="Contacts"
         android:layout_gravity="center"
-        android:id="@+id/detailTitle"
-        android:textSize="18sp"
-        android:textColor="@color/lavender"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:padding="20dp"
-        android:text="Language"
-        android:layout_gravity="center"
-        android:id="@+id/detailLang"
-        android:textSize="18sp"
-        android:textColor="@color/lavender"/>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:padding="20dp"
-        android:text="Description"
-        android:layout_gravity="center"
-        android:id="@+id/detailDesc"
-        android:textSize="18sp"
-        android:textColor="@color/lavender"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:padding="20dp"
-        android:text="UserName"
-        android:layout_gravity="center"
-        android:id="@+id/detailUserName"
-        android:textSize="18sp"
-        android:textColor="@color/lavender"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:padding="20dp"
-        android:text="PlaceName"
-        android:layout_gravity="center"
-        android:id="@+id/detailPlaceName"
-        android:textSize="18sp"
-        android:textColor="@color/lavender"/>
+        android:fontFamily="@font/poppins_medium"
+        android:id="@+id/detailContact"
+        android:textSize="12sp"
+        android:textColor="@color/light_gray"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -171,3 +250,4 @@
     </RelativeLayout>
 
 </LinearLayout>
+</ScrollView>

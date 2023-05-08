@@ -68,7 +68,7 @@
             android:layout_marginBottom="1dp"/>
 
         <TextView
-            android:id="@+id/recLang"
+            android:id="@+id/postCategory"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/recTitle"
@@ -77,7 +77,7 @@
             android:layout_marginBottom="12dp"
             android:layout_toEndOf="@id/recDesc"
             android:maxLines="1"
-            android:text="lang"
+            android:text="category"
             android:textColor="@color/lavender"
             android:textSize="14sp" />
 

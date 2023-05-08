@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
     private Context context;
-    private List<DataClass> dataList;
+    public List<DataClass> dataList;
     boolean isLiked = false;
     public MyAdapter(Context context, List<DataClass> dataList) {
         this.context = context;
@@ -41,11 +41,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
         holder.recUserName.setText(dataList.get(position).getUserName());
         holder.recTitle.setText(dataList.get(position).getDataTitle());
         holder.recDesc.setText(dataList.get(position).getPlaceName());
+        holder.postCategory.setText(dataList.get(position).getCategory());
         holder.recDesc.setVisibility(View.VISIBLE);
-        holder.recLang.setVisibility(View.VISIBLE);
+
         holder.recTitle.setVisibility(View.VISIBLE);
 
          // initialize the flag to false
+
+
 
 
         holder.recCard.setOnClickListener(new View.OnClickListener() {
@@ -56,8 +59,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 intent.putExtra("Description", dataList.get(holder.getAdapterPosition()).getDataDesc());
                 intent.putExtra("PlaceName", dataList.get(holder.getAdapterPosition()).getPlaceName());
                 intent.putExtra("Title", dataList.get(holder.getAdapterPosition()).getDataTitle());
-                intent.putExtra("Language", dataList.get(holder.getAdapterPosition()).getDataLang());
+                intent.putExtra("Category", dataList.get(holder.getAdapterPosition()).getCategory());
                 intent.putExtra("Username", dataList.get(holder.getAdapterPosition()).getUserName());
+                intent.putExtra("PostAddedUserImage", dataList.get(holder.getAdapterPosition()).getUserImage());
+                intent.putExtra("Contacts", dataList.get(holder.getAdapterPosition()).getContacts());
                 intent.putExtra("Key",dataList.get(holder.getAdapterPosition()).getKey());
                 context.startActivity(intent);
             }
@@ -77,7 +82,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 
 class MyViewHolder extends RecyclerView.ViewHolder {
     ImageView recImage;
-    TextView recUserName, recDesc, recLang, recTitle;
+    TextView recUserName, recDesc, postCategory, recTitle, postContacts;
     CardView recCard;
 
 
@@ -88,8 +93,8 @@ class MyViewHolder extends RecyclerView.ViewHolder {
         recCard = itemView.findViewById(R.id.recCard);
         recUserName = itemView.findViewById(R.id.recUserName);
         recDesc = itemView.findViewById(R.id.recDesc);
-        recLang = itemView.findViewById(R.id.recLang);
+        postCategory = itemView.findViewById(R.id.postCategory);
         recTitle = itemView.findViewById(R.id.recTitle);
-
+        postContacts = itemView.findViewById(R.id.detailContact);
     }
 }

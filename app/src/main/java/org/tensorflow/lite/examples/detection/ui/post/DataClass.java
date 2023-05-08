@@ -7,30 +7,39 @@ public class DataClass {
     private String userImage;
     private String dataTitle;
     private String dataDesc;
-    private String dataLang;
+
     private String userName;
     private String placeName;
     private String key;
 
     private String category;
 
+    private String contacts;
 
-    public DataClass(String dataImage, String dataTitle, String dataDesc, String dataLang, String userName, String userImage, String placeName, String category) {
+
+    public DataClass(String dataImage, String dataTitle, String dataDesc,  String userName, String userImage, String placeName, String category, String contacts) {
         this.dataImage = dataImage;
         this.dataTitle = dataTitle;
         this.dataDesc = dataDesc;
-        this.dataLang = dataLang;
         this.userName = userName;
         this.userImage = userImage;
         this.placeName = placeName;
         this.category = category;
-
+        this.contacts = contacts;
     }
+
 
 
     public DataClass() {
     }
 
+    public String getContacts() {
+        return contacts;
+    }
+
+    public void setContacts(String contacts) {
+        this.contacts = contacts;
+    }
 
     public String getCategory() {
         return category;
@@ -70,14 +79,6 @@ public class DataClass {
 
     public void setDataDesc(String dataDesc) {
         this.dataDesc = dataDesc;
-    }
-
-    public String getDataLang() {
-        return dataLang;
-    }
-
-    public void setDataLang(String dataLang) {
-        this.dataLang = dataLang;
     }
 
     public String getUserName() {
