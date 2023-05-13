@@ -28,6 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
     private Button signupButton;
     private TextView loginRedirectText;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,7 @@ public class SignUpActivity extends AppCompatActivity {
         signupPassword = findViewById(R.id.signup_password);
         signupButton = findViewById(R.id.signup_button);
         loginRedirectText = findViewById(R.id.loginRedirectText);
+
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,11 +70,11 @@ public class SignUpActivity extends AppCompatActivity {
                                 FirebaseUser firebaseUser = auth.getCurrentUser();
                                 String userId = firebaseUser.getUid();
 
+                                // Send email verification
+                                sendVerificationEmail(firebaseUser);
 
                                 // Create a new User object with the additional fields
-                                User user = new User(username, name, email);
-
-
+                                User user = new User(username, name, email, password);
 
                                 // Add the user to the Realtime Database under the user's UID
                                 FirebaseDatabase.getInstance().getReference("Users").child(userId).setValue(user)
@@ -103,4 +105,23 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+    private void sendVerificationEmail(FirebaseUser user) {
+        user.sendEmailVerification()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            // Verification email sent successfully
+                            Toast.makeText(SignUpActivity.this, "Verification email sent", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // Failed to send verification email
+                            Toast.makeText(SignUpActivity.this, "Failed to send verification email", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
 }
