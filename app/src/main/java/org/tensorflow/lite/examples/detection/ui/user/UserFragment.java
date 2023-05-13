@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -32,9 +33,13 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.tensorflow.lite.examples.detection.MainAcitvity;
 import org.tensorflow.lite.examples.detection.R;
 import org.tensorflow.lite.examples.detection.databinding.FragmentUserBinding;
 import org.tensorflow.lite.examples.detection.ui.post.UploadActivity;
+import org.tensorflow.lite.examples.detection.ui.sign.LoginActivity;
+
+import java.util.Objects;
 
 
 public class UserFragment extends Fragment {
@@ -43,6 +48,8 @@ public class UserFragment extends Fragment {
     private FragmentUserBinding binding; // Add binding variable
     private FirebaseStorage storage;
     private DatabaseReference database;
+
+    private Button logoutBtn;
 
     public UserFragment() {
         // Required empty public constructor
@@ -62,7 +69,7 @@ public class UserFragment extends Fragment {
 
         binding = FragmentUserBinding.inflate(inflater, container, false);
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        String uid = auth.getCurrentUser().getUid();
+        String uid = Objects.requireNonNull(auth.getCurrentUser()).getUid();
 
         storage = FirebaseStorage.getInstance();
         database = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
@@ -72,6 +79,12 @@ public class UserFragment extends Fragment {
         dialog = builder.create();
         dialog.show();
 
+        binding.logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), LoginActivity.class));
+            }
+        });
 
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
@@ -84,7 +97,7 @@ public class UserFragment extends Fragment {
                             binding.userProfileImage.setImageURI(uri);
 
                             StorageReference storageRef = storage.getReference();
-                            StorageReference imageRef = storageRef.child("User images/" + uid + "/profile.jpg");
+                            StorageReference imageRef = storageRef.child("Userimages/" + uid + "/profile.jpg");
                             imageRef.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                 @Override
                                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -120,6 +133,10 @@ public class UserFragment extends Fragment {
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (!isAdded() || getContext() == null) {
+                    Toast.makeText(getActivity(), String.valueOf(isAdded()), Toast.LENGTH_SHORT).show();
+                    return;
+                }
                 if (dataSnapshot.exists()) {
                     // Get the user's email
                     String email = dataSnapshot.child("email").getValue(String.class);

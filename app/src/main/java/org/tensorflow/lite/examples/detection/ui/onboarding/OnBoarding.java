@@ -15,6 +15,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.button.MaterialButton;
 
 import org.tensorflow.lite.examples.detection.R;
+import org.tensorflow.lite.examples.detection.ui.sign.LoginActivity;
 import org.tensorflow.lite.examples.detection.ui.sign.SignUpActivity;
 
 import java.util.ArrayList;
@@ -54,7 +55,7 @@ public class OnBoarding extends AppCompatActivity {
                 if (onboardingViewPager.getCurrentItem() + 1 < onboardingAdapter.getItemCount()) {
                     onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem() + 1);
                 } else {
-                    startActivity(new Intent(getApplicationContext(), SignUpActivity.class));
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                     finish();
                 }
             }

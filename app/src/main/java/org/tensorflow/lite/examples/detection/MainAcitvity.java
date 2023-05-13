@@ -145,4 +145,9 @@ public class MainAcitvity extends AppCompatActivity  {
 //
 
     }
+
+    @Override
+    public void onBackPressed() {
+        //ignored
+    }
 }
