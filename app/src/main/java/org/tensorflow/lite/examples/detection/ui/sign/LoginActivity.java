@@ -1,6 +1,8 @@
 package org.tensorflow.lite.examples.detection.ui.sign;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -34,7 +36,9 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth auth;
     private EditText loginEmail, loginPassword;
     private TextView signupRedirectText, forgotPasswordText;
-    private Button loginButton;
+    private Button loginButton, sendmessage;
+
+    private TextView forgotpassEmail;
 
 
     @SuppressLint("MissingInflatedId")
@@ -48,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         loginPassword = findViewById(R.id.login_password);
         loginButton = findViewById(R.id.login_button);
         signupRedirectText = findViewById(R.id.signupRedirectText);
+        forgotpassEmail = findViewById(R.id.reset_email);
 
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         rememberMe = sharedPreferences.getBoolean("rememberMe", false);
@@ -128,7 +133,31 @@ public class LoginActivity extends AppCompatActivity {
         forgotPasswordText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String email = loginEmail.getText().toString().trim();
+                openDialog();
+
+            }
+        });
+    }
+    private void openDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View dialogView = getLayoutInflater().inflate(R.layout.forget_password_dialog, null);
+        builder.setView(dialogView);
+
+        Button sendmessage = dialogView.findViewById(R.id.recovery_button);
+        EditText forgotpassEmail = dialogView.findViewById(R.id.reset_email);
+
+        builder.setPositiveButton("Close", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        sendmessage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = forgotpassEmail.getText().toString().trim();
+
                 if (!email.isEmpty() && Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
                     auth.sendPasswordResetEmail(email)
                             .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -142,11 +171,15 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             });
                 } else {
-                    loginEmail.setError("Please enter a valid email");
+                    forgotpassEmail.setError("Please enter a valid email");
                 }
             }
         });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
+
 
     @Override
     public void onBackPressed() {
