@@ -77,6 +77,32 @@
                 android:fontFamily="@font/poppins_medium"
                 android:backgroundTint="@color/lavender"
                 app:cornerRadius="6dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_height="wrap_content">
+                <CheckBox
+                    android:layout_weight="1"
+                    android:id="@+id/rememberMeCheckbox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Remember Me"
+                    />
+                <TextView
+                    android:layout_weight="1"
+                    android:id="@+id/forgotPasswordText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Forgot Password?"
+                    android:clickable="true"
+                    android:textColor="@color/lavender"
+                    android:textSize="16sp"
+                    android:layout_marginTop="11dp"
+                    android:textAlignment="viewEnd"
+                    />
+
+            </LinearLayout>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -88,27 +114,13 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/lavender"
                 android:textSize="14sp"/>
-            <CheckBox
-                android:id="@+id/rememberMeCheckbox"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Remember Me"
-                android:layout_marginTop="16dp" />
-            <TextView
-                android:id="@+id/forgotPasswordText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Forgot Password?"
-                android:clickable="true"
-                android:textColor="@color/lavender"
-                android:textSize="16sp"
-                android:layout_marginTop="8dp"/>
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_7" />
+                android:src="@drawable/img_7"
+                android:scaleType="centerCrop"
+                />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>
