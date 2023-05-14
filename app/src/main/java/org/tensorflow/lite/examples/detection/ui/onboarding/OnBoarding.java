@@ -1,7 +1,9 @@
 package org.tensorflow.lite.examples.detection.ui.onboarding;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -30,6 +32,13 @@ public class OnBoarding extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (isOnboardingCompleted()) {
+            startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+            finish();
+            return;
+        }
+
         setContentView(R.layout.onboarding_container);
 
         layoutOnboardingIndicators = findViewById(R.id.layoutOnboardingIndicators);
@@ -49,12 +58,14 @@ public class OnBoarding extends AppCompatActivity {
                 setCurrentOnboardingIndicator(position);
             }
         });
+
         buttonOnboardingAction.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onboardingViewPager.getCurrentItem() + 1 < onboardingAdapter.getItemCount()) {
                     onboardingViewPager.setCurrentItem(onboardingViewPager.getCurrentItem() + 1);
                 } else {
+                    markOnboardingCompleted();
                     startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                     finish();
                 }
@@ -62,6 +73,17 @@ public class OnBoarding extends AppCompatActivity {
         });
     }
 
+    private boolean isOnboardingCompleted() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        return preferences.getBoolean("isOnboardingCompleted", false);
+    }
+
+    private void markOnboardingCompleted() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("isOnboardingCompleted", true);
+        editor.apply();
+    }
 
     private void setupOnboardingItems() {
         List<OnboardingItem> onboardingItems = new ArrayList<>();
@@ -71,16 +93,13 @@ public class OnBoarding extends AppCompatActivity {
         welcome1.setDescription("");
         welcome1.setImage(R.drawable.img_4);
         OnboardingItem welcome2 = new OnboardingItem();
-        welcome2.setTitle("Comunicate to other tourists!");
-        welcome2.setDescription("Add posts, where you have been, or want to visit...");
+        welcome2.setTitle("Communicate with other tourists!");
+        welcome2.setDescription("Add posts about where you have been or want to visit...");
         welcome2.setImage(R.drawable.img_1);
 
         OnboardingItem welcome3 = new OnboardingItem();
         welcome3.setTitle("AI Detection of mountains");
-        welcome3.setDescription("We provude interesting functions\n" +
-                "such us 3D map, Ai mountain\n" +
-                "detection\n" +
-                " ");
+        welcome3.setDescription("We provide interesting functions such as 3D map and AI mountain detection.");
         welcome3.setImage(R.drawable.img_2);
 
         onboardingItems.add(welcome1);
@@ -88,7 +107,6 @@ public class OnBoarding extends AppCompatActivity {
         onboardingItems.add(welcome3);
 
         onboardingAdapter = new OnBoardingAdapter(onboardingItems);
-
     }
 
     private void setupOnboardingIndicators() {
@@ -104,7 +122,6 @@ public class OnBoarding extends AppCompatActivity {
             ));
             indicators[i].setLayoutParams(layoutParams);
             layoutOnboardingIndicators.addView(indicators[i]);
-
         }
     }
 
@@ -121,14 +138,11 @@ public class OnBoarding extends AppCompatActivity {
                         ContextCompat.getDrawable(getApplicationContext(), R.drawable.onboarding_indicator_inactive)
                 );
             }
-
         }
-        if (index == onboardingAdapter.getItemCount()-1){
+        if (index == onboardingAdapter.getItemCount() - 1) {
             buttonOnboardingAction.setText("Sign In");
-        }else{
+        } else {
             buttonOnboardingAction.setText("Next");
         }
-
     }
-
 }
