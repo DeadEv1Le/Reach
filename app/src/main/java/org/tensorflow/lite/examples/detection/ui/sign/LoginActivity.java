@@ -70,6 +70,37 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        if (rememberMe) {
+            String savedEmail = sharedPreferences.getString("email", "");
+            String savedPassword = sharedPreferences.getString("password", "");
+            loginEmail.setText(savedEmail);
+            loginPassword.setText(savedPassword);
+
+            // Perform automatic login
+            if (!savedEmail.isEmpty() && !savedPassword.isEmpty()) {
+                auth.signInWithEmailAndPassword(savedEmail, savedPassword)
+                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
+                            @Override
+                            public void onSuccess(AuthResult authResult) {
+                                FirebaseUser user = auth.getCurrentUser();
+                                if (user != null && user.isEmailVerified()) {
+                                    Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(LoginActivity.this, MainAcitvity.class));
+                                    finish();
+                                } else {
+                                    Toast.makeText(LoginActivity.this, "Please verify your email before logging in", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
+        }
+
         loginEmail.setText(sharedPreferences.getString("email", ""));
         loginPassword.setText(sharedPreferences.getString("password", ""));
         loginButton.setOnClickListener(new View.OnClickListener() {
