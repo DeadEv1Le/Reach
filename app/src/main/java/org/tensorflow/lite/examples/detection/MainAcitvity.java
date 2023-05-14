@@ -34,7 +34,7 @@ import java.util.ArrayList;
 public class MainAcitvity extends AppCompatActivity  {
 
     RelativeLayout araratImage, aragatsmount;
-    //sdlfigh
+
     private MainResBinding binding;
 
     FloatingActionButton cameraOpenButton;
