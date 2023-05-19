@@ -76,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
             loginEmail.setText(savedEmail);
             loginPassword.setText(savedPassword);
 
-            // Perform automatic login
+            
             if (!savedEmail.isEmpty() && !savedPassword.isEmpty()) {
                 auth.signInWithEmailAndPassword(savedEmail, savedPassword)
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
