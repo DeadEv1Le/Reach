@@ -14,11 +14,15 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -35,12 +39,15 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import org.tensorflow.lite.examples.detection.MainAcitvity;
 import org.tensorflow.lite.examples.detection.R;
+
+
 import org.tensorflow.lite.examples.detection.databinding.FragmentUserBinding;
-import org.tensorflow.lite.examples.detection.ui.post.UploadActivity;
+
 import org.tensorflow.lite.examples.detection.ui.sign.LoginActivity;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -51,8 +58,11 @@ public class UserFragment extends Fragment {
     private FirebaseStorage storage;
     private DatabaseReference database;
 
-    private Button logoutBtn;
+    private ImageView logoutBtn;
 
+    private RecyclerView recyclerView;
+    private UserAdapter userAdapter;
+    private List<TouristPost> postsList;
     public UserFragment() {
         // Required empty public constructor
     }
@@ -80,6 +90,53 @@ public class UserFragment extends Fragment {
         builder.setView(R.layout.progress_layout);
         dialog = builder.create();
         dialog.show();
+
+        recyclerView = binding.recyclerViewProfile;
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        postsList = new ArrayList<>();
+        userAdapter = new UserAdapter(postsList);
+        recyclerView.setAdapter(userAdapter);
+
+        // Get current user's username
+        String currentUserId = auth.getCurrentUser().getUid();
+        DatabaseReference postsRef = FirebaseDatabase.getInstance().getReference().child("TouristPosts");
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
+
+        usersRef.child(currentUserId).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String currentUsername = dataSnapshot.child("username").getValue(String.class);
+
+                    // Retrieve all posts and filter based on the username
+                    postsRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            postsList.clear();
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                TouristPost post = new TouristPost();
+                                if (post.getUserName().equals(currentUsername)) {
+                                    postsList.add(post);
+                                }
+                            }
+                            userAdapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            // Handle error
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle error
+            }
+        });
+
+
 
         binding.logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,7 +199,7 @@ public class UserFragment extends Fragment {
         });
 
 
-        DatabaseReference database = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+
 
         database.addValueEventListener(new ValueEventListener() {
             @Override
