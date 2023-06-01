@@ -1,24 +1,31 @@
 package org.tensorflow.lite.examples.detection.ui.home;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+
 import org.tensorflow.lite.examples.detection.R;
 
 import java.util.List;
-import java.util.Locale;
 
 public class MountainAdapter extends RecyclerView.Adapter<MountainAdapter.ViewHolder> {
-    private List<Mountain> mountains;
+    private List<MountModel> mountainList;
 
-    public MountainAdapter(List<Mountain> mountains) {
-        this.mountains = mountains;
+    private Context context;
+    public MountainAdapter(List<MountModel> mountainList, Context context) {
+        this.mountainList = mountainList;
+        this.context = context;
     }
 
     @NonNull
@@ -28,29 +35,55 @@ public class MountainAdapter extends RecyclerView.Adapter<MountainAdapter.ViewHo
         return new ViewHolder(view);
     }
 
+
+
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Mountain mountain = mountains.get(position);
-        holder.mountainName.setText(mountain.getName());
-        holder.mountainHeight.setText(String.format(Locale.getDefault(), "%d m", mountain.getHeight()));
-        holder.mountainImage.setImageResource(mountain.getImage());
+        MountModel mountain = mountainList.get(position);
+        // Bind the mountain data to the views in the ViewHolder
+        holder.mountainNameTextView.setText(mountain.getMountainName());
+        holder.elevationTextView.setText(String.valueOf(mountain.getElevation()));
+
+        Glide.with(context).load(mountainList.get(position).getItemImage()).into(holder.itemImage);
+
+
+        holder.container.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, MountainInfoActivity.class);
+                intent.putExtra("mountain",  mountainList.get(holder.getAdapterPosition()));
+                context.startActivity(intent);
+            }
+        });
+
+
+
     }
 
+
+
+    public void setMountainList(List<MountModel> mountainList) {
+        this.mountainList = mountainList;
+        notifyDataSetChanged();
+    }
     @Override
     public int getItemCount() {
-        return mountains.size();
+        return mountainList.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-        public ImageView mountainImage;
-        public TextView mountainName;
-        public TextView mountainHeight;
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView mountainNameTextView;
+        TextView elevationTextView;
 
-        public ViewHolder(View itemView) {
+        ImageView itemImage;
+        LinearLayout container;
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            mountainImage = itemView.findViewById(R.id.imageView);
-            mountainName = itemView.findViewById(R.id.mountName1);
-            mountainHeight = itemView.findViewById(R.id.mountainHeight);
+            mountainNameTextView = itemView.findViewById(R.id.mountName1);
+            elevationTextView = itemView.findViewById(R.id.mountainHeight);
+            itemImage = itemView.findViewById(R.id.mountainItemImage);
+            container = itemView.findViewById(R.id.imagesContainer);
         }
+
     }
 }

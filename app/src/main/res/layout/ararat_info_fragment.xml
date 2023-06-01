@@ -157,6 +157,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Moderate"
+            android:id="@id/dificulty"
             android:textColor="#E1E1E1"
             android:textSize="12dp"
             android:textStyle="bold"
@@ -170,12 +171,14 @@
             android:layout_marginLeft="80dp"
             android:text="5137 m"
             android:textColor="#E1E1E1"
+            android:id="@+id/elevation"
             android:textSize="12dp"
             android:textStyle="bold"
 
             />
 
         <TextView
+            android:id="@+id/distance2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="80dp"
@@ -224,6 +227,7 @@
                         />
 
                     <TextView
+                        android:id="@+id/descri"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="-120dp"
@@ -270,6 +274,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="1829"
+                                android:id="@+id/firstHike"
                                 android:textColor="#34344C"
                                 android:textSize="11sp"
                                 android:textStyle="bold" />
@@ -299,6 +304,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Turkey"
+                                android:id="@+id/placeName"
                                 android:textColor="#34344C"
                                 android:textSize="11sp"
                                 android:textStyle="bold"
@@ -330,6 +336,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Volcanic"
+                                android:id="@+id/mountainType"
                                 android:textColor="#20183d"
                                 android:textSize="11sp"
                                 android:textStyle="bold" />
