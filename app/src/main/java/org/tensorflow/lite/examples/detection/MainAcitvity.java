@@ -4,11 +4,8 @@ package org.tensorflow.lite.examples.detection;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,11 +21,8 @@ import org.tensorflow.lite.examples.detection.databinding.MainResBinding;
 import org.tensorflow.lite.examples.detection.ui.home.HomeFragment;
 import org.tensorflow.lite.examples.detection.ui.map.MapsFragment;
 
-import org.tensorflow.lite.examples.detection.ui.post.DetailActivity;
 import org.tensorflow.lite.examples.detection.ui.post.PostFragment;
 import org.tensorflow.lite.examples.detection.ui.user.UserFragment;
-
-import java.util.ArrayList;
 
 
 public class MainAcitvity extends AppCompatActivity  {
@@ -118,34 +112,7 @@ public class MainAcitvity extends AppCompatActivity  {
     // =========== On Ararat Image Click ==============
 
 
-    public void onMountainImageClick(View view) {
-        if (view.getId() == R.id.araratImageContainer) {
 
-
-            Intent myIntent = new Intent(MainAcitvity.this, MountainInfoActivity.class);
-            MainAcitvity.this.startActivity(myIntent);
-
-
-            Log.d("onclick", "onClick: added");
-
-//        } else if (view.getId() == R.id.aragatsImageContainer) {
-//            setContentView(R.layout.aragats_info_fragment);
-//            Log.d("onclick", "onClick: added");
-////        } else if (view.getId() == R.id.map_icon) {
-//////            getSupportFragmentManager().beginTransaction().replace(R.id.container, new MapFragment()).commit();
-////
-////
-////        } else if (view.getId() == R.id.camera_icon) {
-////
-////        }
-//        }
-        }
-
-
-//
-//
-
-    }
 
     @Override
     public void onBackPressed() {

@@ -60,7 +60,7 @@
             android:supportsRtl="true"
             tools:ignore="Instantiatable" />
         <activity
-            android:name=".MountainInfoActivity"
+            android:name=".ui.home.MountainInfoActivity"
             android:label="@string/tfe_od_app_name"
             android:supportsRtl="true"
             tools:ignore="Instantiatable"
