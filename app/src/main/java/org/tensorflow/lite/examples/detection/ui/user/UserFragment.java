@@ -62,6 +62,7 @@ public class UserFragment extends Fragment {
     private RecyclerView recyclerView;
     private UserAdapter userAdapter;
     private List<TouristPost> postsList;
+    String userImage;
     String username;
     public UserFragment() {
         // Required empty public constructor
@@ -210,11 +211,12 @@ public class UserFragment extends Fragment {
 
 
 
+
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (!isAdded() || getContext() == null) {
-                    Toast.makeText(getActivity(), String.valueOf(isAdded()), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getActivity(), String.valueOf(isAdded()), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if (dataSnapshot.exists()) {
@@ -226,6 +228,7 @@ public class UserFragment extends Fragment {
                     binding.profileUserCountry.setText(name);
                     // Get the user's profile image URL
                     String profileImageUrl = dataSnapshot.child("profileImageUrl").getValue(String.class);
+                    userImage = profileImageUrl;
                     // Get the user's username
                     if (profileImageUrl == null) {
                         binding.userProfileImage.setImageResource(R.drawable.uploadimg);
@@ -247,8 +250,68 @@ public class UserFragment extends Fragment {
             }
         });
 
+        binding.editUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), UpdateUser.class);
+                intent.putExtra("UserName", binding.profileUserName.getText().toString());
+                intent.putExtra("Email", binding.proffileEmail.getText().toString());
+                intent.putExtra("Country", binding.profileUserCountry.getText().toString());
+                intent.putExtra("Image", userImage);
+
+                startActivity(intent);
+            }
+        });
+
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Get current user's username
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        String currentUserId = auth.getCurrentUser().getUid();
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
+        DatabaseReference postsRef = FirebaseDatabase.getInstance().getReference().child("Tourist Posts");
+        usersRef.child("username").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String userName = dataSnapshot.getValue(String.class);
+                    username = userName;
+
+                    // Here, username has a valid value, so you can proceed with the posts retrieval
+                    postsRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            postsList.clear();
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                TouristPost post = snapshot.getValue(TouristPost.class);
+                                post.setKey(snapshot.getKey());
+
+                                if (post.getUserName().equals(username)) {
+                                    postsList.add(post);
+                                }
+                            }
+                            userAdapter.notifyDataSetChanged();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            // Handle error
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle error
+            }
+        });
+
     }
 }
 
