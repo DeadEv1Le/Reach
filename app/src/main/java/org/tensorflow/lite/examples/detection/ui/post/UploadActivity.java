@@ -35,6 +35,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import org.tensorflow.lite.examples.detection.MainAcitvity;
 import org.tensorflow.lite.examples.detection.R;
 
 import java.text.DateFormat;
@@ -51,10 +52,22 @@ public class UploadActivity extends AppCompatActivity {
     String category;
     Uri uri;
 
+    ImageView rollback;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
+
+        rollback  = findViewById(R.id.rollback);
+
+
+        rollback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(UploadActivity.this, MainAcitvity.class));
+            }
+        });
+
 
         uploadImage = findViewById(R.id.uploadImage);
         uploadDesc = findViewById(R.id.uploadDesc);

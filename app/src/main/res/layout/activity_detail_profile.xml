@@ -6,12 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.post.DetailActivity">
+    tools:context=".ui.user.PostUserDetail">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.post.DetailActivity">
+    tools:context=".ui.user.PostUserDetail">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,6 +59,7 @@
                    android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:scaleType="centerCrop"
+                   android:visibility="gone"
                    android:src="@drawable/img_12" />
            </com.google.android.material.card.MaterialCardView>
        </androidx.constraintlayout.widget.ConstraintLayout>
@@ -211,7 +212,6 @@
         android:textColor="@color/light_gray"/>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:visibility="gone"
         android:layout_height="match_parent">
 
         <com.github.clans.fab.FloatingActionMenu
@@ -220,7 +220,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
             app:menu_fab_size="normal"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="5dp"
             android:layout_marginEnd="20dp"
             app:menu_colorPressed="@color/lavender"
             app:menu_colorNormal="@color/lavender"

@@ -1,40 +1,35 @@
 package org.tensorflow.lite.examples.detection.ui.user;
 
 public class TouristPost {
-    private String category;
-    private String contacts;
-    private String dataDesc;
     private String dataImage;
-    private String dataTitle;
-    private String placeName;
+
     private String userImage;
+    private String dataTitle;
+    private String dataDesc;
+
     private String userName;
+    private String placeName;
+    private String key;
 
-    // Add getters and setters
-    // ...
+    private String category;
 
-    public String getUserImage() {
-        return userImage;
-    }
+    private String contacts;
 
-    public void setUserImage(String userImage) {
-        this.userImage = userImage;
-    }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
+    public TouristPost(String dataImage, String dataTitle, String dataDesc,  String userName, String userImage, String placeName, String category, String contacts) {
+        this.dataImage = dataImage;
+        this.dataTitle = dataTitle;
+        this.dataDesc = dataDesc;
         this.userName = userName;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
+        this.userImage = userImage;
+        this.placeName = placeName;
         this.category = category;
+        this.contacts = contacts;
+    }
+
+
+
+    public TouristPost() {
     }
 
     public String getContacts() {
@@ -45,12 +40,20 @@ public class TouristPost {
         this.contacts = contacts;
     }
 
-    public String getDataDesc() {
-        return dataDesc;
+    public String getCategory() {
+        return category;
     }
 
-    public void setDataDesc(String dataDesc) {
-        this.dataDesc = dataDesc;
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getUserImage() {
+        return userImage;
+    }
+
+    public void setUserImage(String userImage) {
+        this.userImage = userImage;
     }
 
     public String getDataImage() {
@@ -69,6 +72,30 @@ public class TouristPost {
         this.dataTitle = dataTitle;
     }
 
+    public String getDataDesc() {
+        return dataDesc;
+    }
+
+    public void setDataDesc(String dataDesc) {
+        this.dataDesc = dataDesc;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
     public String getPlaceName() {
         return placeName;
     }
@@ -76,4 +103,5 @@ public class TouristPost {
     public void setPlaceName(String placeName) {
         this.placeName = placeName;
     }
+
 }
