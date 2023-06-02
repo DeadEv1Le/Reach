@@ -100,6 +100,8 @@
 
         <activity android:name=".ui.user.PostUserDetail"
             android:exported="false"/>
+        <activity android:name=".ui.user.UpdateUser"
+            android:exported="false"/>
 
 
     </application>
