@@ -43,7 +43,6 @@ import org.tensorflow.lite.examples.detection.R;
 
 
 import org.tensorflow.lite.examples.detection.databinding.FragmentUserBinding;
-
 import org.tensorflow.lite.examples.detection.ui.sign.LoginActivity;
 
 import java.util.ArrayList;
@@ -63,6 +62,7 @@ public class UserFragment extends Fragment {
     private RecyclerView recyclerView;
     private UserAdapter userAdapter;
     private List<TouristPost> postsList;
+    String username;
     public UserFragment() {
         // Required empty public constructor
     }
@@ -70,9 +70,7 @@ public class UserFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
 
-        }
     }
 
     @Override
@@ -94,28 +92,35 @@ public class UserFragment extends Fragment {
         recyclerView = binding.recyclerViewProfile;
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         postsList = new ArrayList<>();
-        userAdapter = new UserAdapter(postsList);
+        userAdapter = new UserAdapter(postsList, getActivity());
         recyclerView.setAdapter(userAdapter);
 
         // Get current user's username
         String currentUserId = auth.getCurrentUser().getUid();
-        DatabaseReference postsRef = FirebaseDatabase.getInstance().getReference().child("TouristPosts");
-        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("Users");
+        DatabaseReference postsRef = FirebaseDatabase.getInstance().getReference().child("Tourist Posts");
 
-        usersRef.child(currentUserId).addListenerForSingleValueEvent(new ValueEventListener() {
+
+
+
+
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(currentUserId);
+        usersRef.child("username").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    String currentUsername = dataSnapshot.child("username").getValue(String.class);
+                    String userName = dataSnapshot.getValue(String.class);
+                    username = userName;
 
-                    // Retrieve all posts and filter based on the username
+                    // Here, username has a valid value, so you can proceed with the posts retrieval
                     postsRef.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             postsList.clear();
                             for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                                TouristPost post = new TouristPost();
-                                if (post.getUserName().equals(currentUsername)) {
+                                TouristPost post = snapshot.getValue(TouristPost.class);
+                                post.setKey(snapshot.getKey());
+
+                                if (post.getUserName().equals(username)) {
                                     postsList.add(post);
                                 }
                             }
@@ -135,6 +140,10 @@ public class UserFragment extends Fragment {
                 // Handle error
             }
         });
+
+
+
+
 
 
 

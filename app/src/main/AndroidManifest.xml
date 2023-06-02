@@ -95,6 +95,12 @@
         <activity android:name=".ui.post.DetailActivity"
             android:exported="false"/>
 
+        <activity android:name=".ui.user.UpdateActivtyPost"
+            android:exported="false"/>
+
+        <activity android:name=".ui.user.PostUserDetail"
+            android:exported="false"/>
+
 
     </application>
 
