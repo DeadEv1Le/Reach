@@ -157,22 +157,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
     cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
 
 
-    Button btnZoomIn = findViewById(R.id.btnZoomIn);
-    Button btnZoomOut = findViewById(R.id.btnZoomOut);
 
-    btnZoomIn.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        zoomIn();
-      }
-    });
-
-    btnZoomOut.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        zoomOut();
-      }
-    });
 
 
 
@@ -307,37 +292,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
               }
             });
   }
-  private void zoomIn() {
-    if (camera != null) {
-      Camera.Parameters parameters = camera.getParameters();
-      int maxZoom = parameters.getMaxZoom();
 
-      if (maxZoom > 0) {
-        int currentZoom = parameters.getZoom();
-        if (currentZoom < maxZoom) {
-          int newZoom = currentZoom + 1;
-          parameters.setZoom(newZoom);
-          camera.setParameters(parameters);
-        }
-      }
-    }
-  }
-
-  private void zoomOut() {
-    if (camera != null) {
-      Camera.Parameters parameters = camera.getParameters();
-      int maxZoom = parameters.getMaxZoom();
-
-      if (maxZoom > 0) {
-        int currentZoom = parameters.getZoom();
-        if (currentZoom > 0) {
-          int newZoom = currentZoom - 1;
-          parameters.setZoom(newZoom);
-          camera.setParameters(parameters);
-        }
-      }
-    }
-  }
 
   private Rect createZoomRect(Rect sensorRect, float zoom) {
     int newWidth = Math.round(sensorRect.width() / zoom);

@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="org.tensorflow.lite.examples.detection">
 
-    <uses-sdk />
+
+    <uses-sdk android:minSdkVersion="21" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -14,12 +15,14 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
-        android:allowBackup="false"
+        android:allowBackup="true"
         android:icon="@drawable/mount1"
         android:label="@string/tfe_od_app_name"
         android:roundIcon="@drawable/mount1"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.ObjectDetection">
+        android:theme="@style/AppTheme.ObjectDetection"
+       >
+        >
 
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
@@ -33,7 +36,7 @@
              "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
         -->
         <meta-data
-            android:name="com.google.android.geo.API_KEY"
+            android:name="com.google.android.geo.AIzaSyCukags_vcK-TjfuhKxh_4PPN1DrAvB3T8"
             android:value="AIzaSyCukags_vcK-TjfuhKxh_4PPN1DrAvB3T8" />
         <activity
             android:name=".MainAcitvity"
@@ -71,6 +74,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <activity
             android:name=".ui.sign.LoginActivity"
             android:exported="true" >
@@ -87,21 +91,21 @@
         </activity>
         <activity
             android:name=".ui.sign.SignUpActivity"
-            android:exported="false" />
+            />
         <activity
             android:name=".ui.onboarding.OnBoarding"
-            android:exported="false" >
+          >
         </activity>
         <activity android:name=".ui.post.DetailActivity"
-            android:exported="false"/>
+     />
 
         <activity android:name=".ui.user.UpdateActivtyPost"
-            android:exported="false"/>
+            />
 
         <activity android:name=".ui.user.PostUserDetail"
-            android:exported="false"/>
+           />
         <activity android:name=".ui.user.UpdateUser"
-            android:exported="false"/>
+          />
 
 
     </application>

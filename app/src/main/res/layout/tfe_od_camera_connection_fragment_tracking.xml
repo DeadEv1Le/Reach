@@ -22,29 +22,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:src="@drawable/search"
-        android:id="@+id/returnbtn"
-        android:onClick="onReturnBtnClick"
-        />
     <org.tensorflow.lite.examples.detection.customview.OverlayView
         android:id="@+id/tracking_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <Button
-        android:id="@+id/btnZoomIn"
-        android:layout_marginStart="250dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Zoom In" />
 
-    <Button
-        android:id="@+id/btnZoomOut"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:text="Zoom Out" />
 </FrameLayout>
