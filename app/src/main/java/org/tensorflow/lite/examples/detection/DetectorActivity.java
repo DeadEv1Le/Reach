@@ -16,31 +16,19 @@
 
 package org.tensorflow.lite.examples.detection;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
-
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
-import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.Typeface;
-
-
-import android.hardware.camera2.CameraAccessException;
-import android.hardware.camera2.CameraCharacteristics;
-import android.hardware.camera2.CameraManager;
-import android.hardware.Camera;
-
 import android.media.ImageReader.OnImageAvailableListener;
 import android.os.SystemClock;
 import android.util.Size;
 import android.util.TypedValue;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -89,12 +77,9 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
   private MultiBoxTracker tracker;
 
   private BorderedText borderedText;
-  private Camera camera;
 
-  private CameraManager cameraManager;
   @Override
   public void onPreviewSizeChosen(final Size size, final int rotation) {
-
     final float textSizePx =
             TypedValue.applyDimension(
                     TypedValue.COMPLEX_UNIT_DIP, TEXT_SIZE_DIP, getResources().getDisplayMetrics());
@@ -154,12 +139,6 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                 }
               }
             });
-    cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-
-
-
-
-
 
     tracker.setFrameConfiguration(previewWidth, previewHeight, sensorOrientation);
   }
@@ -291,16 +270,5 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                         });
               }
             });
-  }
-
-
-  private Rect createZoomRect(Rect sensorRect, float zoom) {
-    int newWidth = Math.round(sensorRect.width() / zoom);
-    int newHeight = Math.round(sensorRect.height() / zoom);
-    int offsetX = (sensorRect.width() - newWidth) / 2;
-    int offsetY = (sensorRect.height() - newHeight) / 2;
-
-    return new Rect(sensorRect.left + offsetX, sensorRect.top + offsetY,
-            sensorRect.left + offsetX + newWidth, sensorRect.top + offsetY + newHeight);
   }
 }

@@ -65,18 +65,18 @@ public class TFLiteObjectDetectionAPIModel implements Detector {
    * @param isQuantized Boolean representing model is quantized or not
    */
   public static Detector create(
-      final Context context,
-      final String modelFilename,
-      final String labelFilename,
-      final int inputSize,
-      final boolean isQuantized)
-      throws IOException {
+          final Context context,
+          final String modelFilename,
+          final String labelFilename,
+          final int inputSize,
+          final boolean isQuantized)
+          throws IOException {
     return new TFLiteObjectDetectionAPIModel(context, modelFilename);
   }
 
   private TFLiteObjectDetectionAPIModel(Context context, String modelFilename) throws IOException {
     ObjectDetectorOptions options =
-        ObjectDetectorOptions.builder().setMaxResults(NUM_DETECTIONS).build();
+            ObjectDetectorOptions.builder().setMaxResults(NUM_DETECTIONS).build();
     objectDetector = ObjectDetector.createFromFileAndOptions(context, modelFilename, options);
   }
 
@@ -94,11 +94,11 @@ public class TFLiteObjectDetectionAPIModel implements Detector {
     int cnt = 0;
     for (Detection detection : results) {
       recognitions.add(
-          new Recognition(
-              "" + cnt++,
-              detection.getCategories().get(0).getLabel(),
-              detection.getCategories().get(0).getScore(),
-              detection.getBoundingBox()));
+              new Recognition(
+                      "" + cnt++,
+                      detection.getCategories().get(0).getLabel(),
+                      detection.getCategories().get(0).getScore(),
+                      detection.getBoundingBox()));
     }
     Trace.endSection(); // "recognizeImage"
     return recognitions;
@@ -123,15 +123,15 @@ public class TFLiteObjectDetectionAPIModel implements Detector {
   public void setNumThreads(int numThreads) {
     if (numThreads != 1) {
       throw new IllegalArgumentException(
-          "Manipulating the numbers of threads is not allowed in the Task"
-              + " library currently. The current implementation runs on single thread.");
+              "Manipulating the numbers of threads is not allowed in the Task"
+                      + " library currently. The current implementation runs on single thread.");
     }
   }
 
   @Override
   public void setUseNNAPI(boolean isChecked) {
     throw new UnsupportedOperationException(
-        "Manipulating the hardware accelerators is not allowed in the Task"
-            + " library currently. Only CPU is allowed.");
+            "Manipulating the hardware accelerators is not allowed in the Task"
+                    + " library currently. Only CPU is allowed.");
   }
 }

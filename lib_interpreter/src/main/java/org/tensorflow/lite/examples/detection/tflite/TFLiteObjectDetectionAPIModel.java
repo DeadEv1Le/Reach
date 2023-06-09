@@ -92,7 +92,7 @@ public class TFLiteObjectDetectionAPIModel implements Detector {
 
   /** Memory-map the model file in Assets. */
   private static MappedByteBuffer loadModelFile(AssetManager assets, String modelFilename)
-      throws IOException {
+          throws IOException {
     AssetFileDescriptor fileDescriptor = assets.openFd(modelFilename);
     FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
     FileChannel fileChannel = inputStream.getChannel();
@@ -110,20 +110,20 @@ public class TFLiteObjectDetectionAPIModel implements Detector {
    * @param isQuantized Boolean representing model is quantized or not
    */
   public static Detector create(
-      final Context context,
-      final String modelFilename,
-      final String labelFilename,
-      final int inputSize,
-      final boolean isQuantized)
-      throws IOException {
+          final Context context,
+          final String modelFilename,
+          final String labelFilename,
+          final int inputSize,
+          final boolean isQuantized)
+          throws IOException {
     final TFLiteObjectDetectionAPIModel d = new TFLiteObjectDetectionAPIModel();
 
     MappedByteBuffer modelFile = loadModelFile(context.getAssets(), modelFilename);
     MetadataExtractor metadata = new MetadataExtractor(modelFile);
     try (BufferedReader br =
-        new BufferedReader(
-            new InputStreamReader(
-                metadata.getAssociatedFile(labelFilename), Charset.defaultCharset()))) {
+                 new BufferedReader(
+                         new InputStreamReader(
+                                 metadata.getAssociatedFile(labelFilename), Charset.defaultCharset()))) {
       String line;
       while ((line = br.readLine()) != null) {
         Log.w(TAG, line);
@@ -219,22 +219,22 @@ public class TFLiteObjectDetectionAPIModel implements Detector {
     // For example, your model's NUM_DETECTIONS = 20, but sometimes it only outputs 16 predictions
     // If you don't use the output's numDetections, you'll get nonsensical data
     int numDetectionsOutput =
-        min(
-            NUM_DETECTIONS,
-            (int) numDetections[0]); // cast from float to integer, use min for safety
+            min(
+                    NUM_DETECTIONS,
+                    (int) numDetections[0]); // cast from float to integer, use min for safety
 
     final ArrayList<Recognition> recognitions = new ArrayList<>(numDetectionsOutput);
     for (int i = 0; i < numDetectionsOutput; ++i) {
       final RectF detection =
-          new RectF(
-              outputLocations[0][i][1] * inputSize,
-              outputLocations[0][i][0] * inputSize,
-              outputLocations[0][i][3] * inputSize,
-              outputLocations[0][i][2] * inputSize);
+              new RectF(
+                      outputLocations[0][i][1] * inputSize,
+                      outputLocations[0][i][0] * inputSize,
+                      outputLocations[0][i][3] * inputSize,
+                      outputLocations[0][i][2] * inputSize);
 
       recognitions.add(
-          new Recognition(
-              "" + i, labels.get((int) outputClasses[0][i]), outputScores[0][i], detection));
+              new Recognition(
+                      "" + i, labels.get((int) outputClasses[0][i]), outputScores[0][i], detection));
     }
     Trace.endSection(); // "recognizeImage"
     return recognitions;

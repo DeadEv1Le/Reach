@@ -1,4 +1,4 @@
- /*
+/*
  * Copyright 2019 The TensorFlow Authors. All Rights Reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-        package org.tensorflow.lite.examples.detection;
+package org.tensorflow.lite.examples.detection;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
