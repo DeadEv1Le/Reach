@@ -53,7 +53,7 @@ public class MapsFragment extends Fragment implements OnMapReadyCallback {
         // Add markers for the mountains
         googleMap.addMarker(new MarkerOptions()
                 .position(mountArarat)
-                .title("Mount Aragats"));
+                .title("Mount Ararat"));
         googleMap.addMarker(new MarkerOptions()
                 .position(aragats)
                 .title("Mount Aragats"));
